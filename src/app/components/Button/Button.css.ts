@@ -1,9 +1,9 @@
 import { sprinkles } from "@/styles/sprinkles.css";
 import { vars } from "@/styles/theme.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 export const baseStyles = style([
-  sprinkles({ textSize: "base" }),
   {
     borderRadius: vars.borderRadius["rounded-full"],
     borderWidth: 1,
@@ -21,35 +21,42 @@ export const baseStyles = style([
   },
 ]);
 
-export const buttonStyles = styleVariants({
-  primary: [
-    baseStyles,
-    {
-      borderColor: vars.colors.primary[500],
-      background: vars.colors.primary[500],
-      ":hover": {
-        background: vars.colors.primary[700],
-        borderColor: vars.colors.primary[700],
+export const buttonStyles = recipe({
+  base: baseStyles,
+  variants: {
+    color: {
+      primary: {
+        borderColor: vars.colors.primary[500],
+        background: vars.colors.primary[500],
+        ":hover": {
+          background: vars.colors.primary[700],
+          borderColor: vars.colors.primary[700],
+        },
+        ":active": {
+          background: vars.colors.primary[300],
+          borderColor: vars.colors.primary[300],
+        },
       },
-      ":active": {
-        background: vars.colors.primary[300],
-        borderColor: vars.colors.primary[300],
+
+      secondary: {
+        borderColor: vars.colors.secondary[500],
+        background: vars.colors.secondary[500],
+        ":hover": {
+          background: vars.colors.secondary[700],
+          borderColor: vars.colors.secondary[700],
+        },
+        ":active": {
+          background: vars.colors.secondary[300],
+          borderColor: vars.colors.secondary[300],
+        },
       },
     },
-  ],
-  secondary: [
-    baseStyles,
-    {
-      borderColor: vars.colors.secondary[500],
-      background: vars.colors.secondary[500],
-      ":hover": {
-        background: vars.colors.secondary[700],
-        borderColor: vars.colors.secondary[700],
-      },
-      ":active": {
-        background: vars.colors.secondary[300],
-        borderColor: vars.colors.secondary[300],
-      },
+    size: {
+      xs: sprinkles({ textSize: "xs" }),
+      sm: sprinkles({ textSize: "sm" }),
+      base: sprinkles({ textSize: "base" }),
+      lg: sprinkles({ textSize: "lg" }),
+      xl: sprinkles({ textSize: "xl" }),
     },
-  ],
+  },
 });
