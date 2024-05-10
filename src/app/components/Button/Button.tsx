@@ -1,7 +1,9 @@
 import React from "react";
 import { buttonStyles } from "./Button.css";
 
-type ButtonProps = React.ComponentProps<"button">;
-export const Button = (props: ButtonProps) => {
-  return <button className={buttonStyles} {...props} />;
+type ButtonProps = React.ComponentProps<"button"> & {
+  variant: keyof typeof buttonStyles;
+};
+export const Button = ({ variant = "secondary", ...props }: ButtonProps) => {
+  return <button className={buttonStyles[variant]} {...props} />;
 };
