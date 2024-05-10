@@ -1,3 +1,5 @@
+import { Button } from "./components/Button";
+
 export default function Home() {
-  return <h1>KT - Vanilla Extract</h1>;
+  return <Button>KT vanilla extract</Button>;
 }
